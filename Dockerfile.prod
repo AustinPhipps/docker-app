@@ -18,11 +18,11 @@ RUN apt-get update \
 
 # add and install requirements
 RUN pip install --upgrade pip
-COPY ./requirements.txt .
+COPY ./app/requirements.txt .
 RUN pip install -r requirements.txt
 
 # add app
-COPY . .
+COPY ./app .
 
 # add and run as non-root user
 RUN adduser --disabled-password myuser
