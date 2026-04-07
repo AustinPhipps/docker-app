@@ -1,11 +1,13 @@
+from django.contrib.auth.models import AbstractUser
 from django.db import models
 
-from django.contrib.auth.models import AbstractUser
 
 class CustomUser(AbstractUser):
     pass
+
     class Meta:
-        app_label = 'movies'
+        app_label = "movies"
+
 
 class Movie(models.Model):
     title = models.CharField(max_length=255)
@@ -16,4 +18,3 @@ class Movie(models.Model):
 
     def __str__(self):
         return f"{self.title}"
-# Create your models here.

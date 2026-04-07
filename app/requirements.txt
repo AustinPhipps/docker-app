@@ -1,7 +1,12 @@
+black==25.12.0
 Django==6.0
+dj-database-url==2.3.0
 djangorestframework==3.16.1
+flake8==7.3.0
 gunicorn==22.0.0
+isort==7.0.0
 psycopg2-binary==2.9.11
 pytest==9.0.2
+pytest-cov==7.0.0
 pytest-django==4.11.1
-dj-database-url==2.3.0
+whitenoise==6.11.0

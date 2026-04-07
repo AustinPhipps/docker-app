@@ -1,6 +1,7 @@
-import json
 import pytest
+
 from movies.models import Movie
+
 
 @pytest.mark.django_db
 def test_add_movie(client):
@@ -8,27 +9,29 @@ def test_add_movie(client):
     assert len(movies) == 0
 
     resp = client.post(
-        '/api/movies/',
+        "/api/movies/",
         {
-            'title': 'The Big Lebowski',
-            'genre': 'comedy',
-            'year': '1998',
+            "title": "The Big Lebowski",
+            "genre": "comedy",
+            "year": "1998",
         },
-        content_type='application/json'
+        content_type="application/json",
     )
     assert resp.status_code == 201
-    assert resp.data['title'] == 'The Big Lebowski'
+    assert resp.data["title"] == "The Big Lebowski"
 
     movies = Movie.objects.all()
     assert len(movies) == 1
 
+
 @pytest.mark.django_db
 def test_get_single_movie(client):
-    movie = Movie.objects.create(title='The Big Lebowski', genre='comedy', year='1998')
-    resp = client.get(f'/api/movies/{movie.id}/')
+    movie = Movie.objects.create(title="The Big Lebowski", genre="comedy", year="1998")
+    resp = client.get(f"/api/movies/{movie.id}/")
     assert resp.status_code == 200
-    assert resp.data['title'] == 'The Big Lebowski'
+    assert resp.data["title"] == "The Big Lebowski"
+
 
 def test_get_single_movie_incorrect_id(client):
-    resp = client.get(f'/api/movies/foo/')
+    resp = client.get("/api/movies/foo/")
     assert resp.status_code == 404
